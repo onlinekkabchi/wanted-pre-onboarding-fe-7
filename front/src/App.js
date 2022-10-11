@@ -1,5 +1,7 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import styled from "styled-components";
-import Login from "./component/login";
+import LoginForm from "./component/loginForm";
+import Todos from "./component/todos";
 import "./App.css";
 
 const AppContainer = styled.div`
@@ -11,11 +13,15 @@ const AppContainer = styled.div`
     margin: 45px;
 `;
 
+const createdRouter = createBrowserRouter([
+    { path: "/", element: <LoginForm /> },
+    { path: "todos", element: <Todos /> },
+]);
+
 function App() {
     return (
         <AppContainer>
-            <h2>App</h2>
-            <Login />
+            <RouterProvider router={createdRouter} />
         </AppContainer>
     );
 }
