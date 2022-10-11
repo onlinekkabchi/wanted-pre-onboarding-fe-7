@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { SignUpButton, SubmitButton } from "../styled-component/submitButton";
+import { SignUpButton, SubmitButton } from "../styled-component/LoginButtons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { sampleToken } from "../fakeDB/db";

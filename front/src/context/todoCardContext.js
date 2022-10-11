@@ -16,6 +16,16 @@ function cardReducer(state, action) {
                 ...state,
                 { id: newId, content: action.content, isCompleted: false },
             ];
+        case "EDIT_CARD":
+            const cardLocation = state.findIndex(
+                (item) => item.id === action.id
+            );
+            state.splice(cardLocation, 1, {
+                id: action.id,
+                content: action.content,
+                isCompleted: action.isCompleted,
+            });
+            return state;
         case "REMOVE_CARD":
             return state.filter((card) => card.id !== action.id);
         default:

@@ -1,28 +1,23 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import styled from "styled-components";
+import { RouterProvider } from "react-router-dom";
+import "./App.css";
+import { CardProvider } from "./context/todoCardContext";
+import { AppContainer } from "./styled-component/appContainer";
+import { createBrowserRouter } from "react-router-dom";
 import LoginForm from "./component/loginForm";
 import Todos from "./component/todos";
-import "./App.css";
 
-const AppContainer = styled.div`
-    width: 450px;
-    min-height: 800px;
-    background: #ebebeb;
-    border-radius: 25px;
-    padding: 25px;
-    margin: 45px;
-`;
-
-const createdRouter = createBrowserRouter([
+export const createdBrowserRouter = createBrowserRouter([
     { path: "/", element: <LoginForm /> },
     { path: "todos", element: <Todos /> },
 ]);
 
 function App() {
     return (
-        <AppContainer>
-            <RouterProvider router={createdRouter} />
-        </AppContainer>
+        <CardProvider>
+            <AppContainer>
+                <RouterProvider router={createdBrowserRouter} />
+            </AppContainer>
+        </CardProvider>
     );
 }
 

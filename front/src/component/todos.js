@@ -1,55 +1,11 @@
 import axios from "axios";
-import { useReducer, useState } from "react";
-import styled from "styled-components";
-
-const todoSample = [
-    { id: 1, content: "수첩만들기", isCompleted: true },
-    { id: 2, content: "api 접속 안되는거 고치기", isCompleted: false },
-];
-
-const TodoCard = styled.div`
-    font-size: 18px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background: #ffffff;
-    height: 60px;
-    padding: 10px;
-    margin: 5px;
-    border-radius: 10px;
-`;
-
-const DoneTag = styled.button`
-    background: #ebebeb;
-    height: 30px;
-    margin-left: 10px;
-    border: none;
-`;
-
-const EditButton = styled.button`
-    background: #d3d3d3;
-    height: 30px;
-    margin-left: 10px;
-    border: none;
-`;
-
-function cardReducer(state, action) {
-    switch (action.type) {
-        case "ADD_CARD":
-            const newId = `${Math.floor(Math.random() * 100)}${state.length}`;
-            return [
-                ...state,
-                { id: newId, content: action.content, isCompleted: false },
-            ];
-        case "REMOVE_CARD":
-            return state.filter((card) => card.id !== action.id);
-        default:
-            break;
-    }
-}
+import { useState } from "react";
+import { useCardState, useCardDispatch } from "../context/todoCardContext";
+import Card from "./card";
 
 export default function Todos() {
-    const [todos, dispatch] = useReducer(cardReducer, todoSample);
+    const todos = useCardState();
+    const dispatch = useCardDispatch();
     const [card, setCard] = useState("");
 
     const addCard = () => {
@@ -94,23 +50,14 @@ export default function Todos() {
                     TODO 추가
                 </button>
             </div>
-
-            {todos.map((e) => Card(e))}
+            {todos.map((item) => (
+                <Card
+                    key={item.id}
+                    id={item.id}
+                    isCompleted={item.isCompleted}
+                    content={item.content}
+                />
+            ))}
         </>
-    );
-}
-
-function Card(e) {
-    return (
-        <TodoCard key={e.id}>
-            <p>{e.content}</p>
-            {e.isCompleted ? (
-                <DoneTag>완료</DoneTag>
-            ) : (
-                <DoneTag>미완료</DoneTag>
-            )}
-            <EditButton>수정</EditButton>
-            <EditButton>삭제</EditButton>
-        </TodoCard>
     );
 }
