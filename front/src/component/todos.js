@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 import { useCardState, useCardDispatch } from "../context/todoCardContext";
 import Card from "./card";
