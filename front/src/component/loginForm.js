@@ -67,7 +67,6 @@ export default function LoginForm() {
                 navigate("/todos");
             }
         }
-        console.log(submitButtonOn);
     };
 
     useEffect(() => {
@@ -77,7 +76,7 @@ export default function LoginForm() {
         ) {
             navigate("/todos");
         }
-    }, []);
+    }, [navigate]);
 
     return (
         <>
