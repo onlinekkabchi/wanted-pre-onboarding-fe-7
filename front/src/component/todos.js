@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 import { useCardState, useCardDispatch } from "../context/todoCardContext";
 import Card from "./card";
@@ -13,14 +12,6 @@ export default function Todos() {
             dispatch({ type: "ADD_CARD", content: card });
             setCard("");
         }
-    };
-
-    const editCard = () => {
-        dispatch({ type: "EDIT_CARD" });
-    };
-
-    const sendReq = () => {
-        axios.post("https://pre-onboarding-selection-task.shop/todos");
     };
 
     return (
