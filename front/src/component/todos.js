@@ -15,14 +15,6 @@ export default function Todos() {
         }
     };
 
-    const editCard = () => {
-        dispatch({ type: "EDIT_CARD" });
-    };
-
-    const sendReq = () => {
-        axios.post("https://pre-onboarding-selection-task.shop/todos");
-    };
-
     return (
         <>
             <div style={{ marginBottom: "15px", paddingLeft: "15px" }}>
